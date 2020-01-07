@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/01/07/%E5%88%9D%E6%8E%A2RabbitMq%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/P:%5Cworkspace%5CHexo%5Csource_posts%5C%E5%88%9D%E6%8E%A2RabbitMq%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C20190903141227300.png">
 <meta property="article:published_time" content="2020-01-07T07:13:27.000Z">
-<meta property="article:modified_time" content="2020-01-07T07:41:52.113Z">
+<meta property="article:modified_time" content="2020-01-07T07:45:02.901Z">
 <meta property="article:author" content="Wei Tao Chen">
 <meta property="article:tag" content="RabbitMq">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,9 @@
 <p><code>④ 这种情况触发的是 ConfirmCallback 回调函数。</code></p>
 </li>
 </ol>
-<h4 id="消息确认机制"><a href="#消息确认机制" class="headerlink" title="消息确认机制"></a><strong>消息确认机制</strong></h4><p>①自动确认， 这也是默认的消息确认情况。   AcknowledgeMode.NONE<br>RabbitMQ成功将消息发出（即将消息成功写入TCP Socket）中立即认为本次投递已经被正确处理，不管消费者端是否成功处理本次投递。<br>所以这种情况如果消费端消费逻辑抛出异常，也就是消费端没有处理成功这条消息，那么就相当于丢失了消息。<br>一般这种情况我们都是使用try catch捕捉异常后，打印日志用于追踪数据，这样找出对应数据再做后续处理。② 不确认， 这个不做介绍<br>③ 手动确认 ， 这个比较关键，也是我们配置接收消息确认机制时，多数选择的模式。<br>消费者收到消息后，手动调用basic.ack/basic.nack/basic.reject后，RabbitMQ收到这些消息后，才认为本次投递成功。<br>basic.ack用于肯定确认<br>basic.nack用于否定确认（注意：这是AMQP 0-9-1的RabbitMQ扩展）<br>basic.reject用于否定确认，但与basic.nack相比有一个限制:一次只能拒绝单条消息<br>消费者端以上的3个方法都表示消息已经被正确投递，但是basic.ack表示消息已经被正确处理，但是basic.nack,basic.reject表示没有被正确处理，但是RabbitMQ中仍然需要删除这条消息。 </p>
+<h4 id="消息确认机制"><a href="#消息确认机制" class="headerlink" title="消息确认机制"></a><strong>消息确认机制</strong></h4><p>①自动确认， 这也是默认的消息确认情况。   AcknowledgeMode.NONE<br>RabbitMQ成功将消息发出（即将消息成功写入TCP Socket）中立即认为本次投递已经被正确处理，不管消费者端是否成功处理本次投递。<br>所以这种情况如果消费端消费逻辑抛出异常，也就是消费端没有处理成功这条消息，那么就相当于丢失了消息。<br>一般这种情况我们都是使用try catch捕捉异常后，打印日志用于追踪数据，这样找出对应数据再做后续处理。</p>
+<p>② 不确认， 这个不做介绍</p>
+<p>③ 手动确认 ， 这个比较关键，也是我们配置接收消息确认机制时，多数选择的模式。<br>消费者收到消息后，手动调用basic.ack/basic.nack/basic.reject后，RabbitMQ收到这些消息后，才认为本次投递成功。<br>basic.ack用于肯定确认<br>basic.nack用于否定确认（注意：这是AMQP 0-9-1的RabbitMQ扩展）<br>basic.reject用于否定确认，但与basic.nack相比有一个限制:一次只能拒绝单条消息<br>消费者端以上的3个方法都表示消息已经被正确投递，但是basic.ack表示消息已经被正确处理，但是basic.nack,basic.reject表示没有被正确处理，但是RabbitMQ中仍然需要删除这条消息。 </p>
 <p>原文链接：<a href="https://blog.csdn.net/qq_35387940/article/details/100514134" target="_blank" rel="noopener">https://blog.csdn.net/qq_35387940/article/details/100514134</a></p>
 
         </div>
@@ -240,7 +242,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-01-07T07:41:52.113Z" itemprop="dateUpdated">2020-01-07 15:41:52</time>
+    Last updated: <time datetime="2020-01-07T07:45:02.901Z" itemprop="dateUpdated">2020-01-07 15:45:02</time>
 </span><br>
 
 
